@@ -34,22 +34,28 @@ const TicketManagementPanel = ({ ticket, statuses, priorities, users, onUpdate }
         });
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            const result = await updateTicket(ticket.id, {
-                status_id: formData.status_id,
-                priority_id: formData.priority_id,
-                assigned_to: formData.assigned_to
-            });
+ const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+        const updateData: any = {
+            status_id: formData.status_id,
+            priority_id: formData.priority_id,
+        };
 
-            await fetchTickets();
-            onUpdate(result);
-            setIsEditing(false);
-        } catch (error) {
-            console.error("שגיאה בעדכון הטיקט:", error);
+        if (user?.role === 'admin') {
+            updateData.assigned_to = formData.assigned_to;
         }
-    };
+
+        const result = await updateTicket(ticket.id, updateData);
+
+        await fetchTickets();
+        onUpdate(result);
+        setIsEditing(false);
+    } catch (error) {
+        console.error("שגיאה בעדכון הטיקט:", error);
+        alert("עדכון נכשל: ייתכן ואין לך הרשאות לבצע פעולה זו.");
+    }
+};
 
     return (
         <div className="ticket-management-panel">
