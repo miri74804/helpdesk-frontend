@@ -12,7 +12,6 @@ import Navbar from './components/common/Navbar'
 import Loading from './components/common/Loading'
 import UserManagement from './components/admin/UserManagement'
 import StatusManagement from './components/admin/StatusManagement'
-import AdminStats from './components/admin/AdminStats'
 
 function App() {
 
@@ -29,7 +28,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
-          <Route path="" element={<AdminStats />} />
           <Route path="users" element={<UserManagement />} />
           <Route path="settings" element={<StatusManagement />} />
         </Route>

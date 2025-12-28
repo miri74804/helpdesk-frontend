@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
+import "../../styles/AdminSidebar.css";
 
-interface AdminSidebarProps {
-
-}
 
 const AdminSidebar = () => {
     return (
@@ -20,6 +18,8 @@ const AdminSidebar = () => {
 }
 
 export default AdminSidebar;
+
+
 
 
 
