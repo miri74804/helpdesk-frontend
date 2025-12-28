@@ -1,0 +1,206 @@
+@import './variables.css';
+
+/* עמוד הטיקטים */
+.tickets-page {
+  min-height: 100vh;
+  background: var(--light);
+  padding: var(--spacing-xl) 0;
+}
+
+.tickets-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+  direction: rtl;
+}
+
+/* כותרת */
+.tickets-header {
+  margin-bottom: var(--spacing-2xl);
+  text-align: center;
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 2px solid var(--border);
+}
+
+.tickets-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 var(--spacing-md) 0;
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tickets-subtitle {
+  font-size: 15px;
+  color: var(--gray);
+  margin: 0 0 var(--spacing-xl) 0;
+  line-height: 1.6;
+}
+
+/* ========== מסננים ========== */
+.tickets-filters {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  min-width: 200px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: 15px;
+  font-family: var(--font-primary);
+  color: var(--dark);
+  background: white;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2364748b' d='M6 8L0 2l1.4-1.4L6 5.2 10.6.6 12 2z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left var(--spacing-lg) center;
+  padding-left: 40px;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-group:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.filter-group:hover {
+  border-color: var(--primary);
+  background-color: var(--light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* מצב טעינה */
+.tickets-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 18px;
+  color: var(--gray);
+}
+
+/* אם אין טיקטים */
+.tickets-empty {
+  text-align: center;
+  padding: 80px var(--spacing-xl);
+  color: var(--gray);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.tickets-empty-icon {
+  font-size: 64px;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.8;
+}
+
+.tickets-empty-text {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--dark-secondary);
+}
+
+/* רשימת הטיקטים */
+.tickets-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* כפתור הוספת טיקט */
+.tickets-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border);
+}
+
+.add-ticket-btn {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  color: white;
+  border: none;
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-slow);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+  font-family: var(--font-primary);
+  min-width: 220px;
+}
+
+.add-ticket-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+}
+
+.add-ticket-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+
+/* ספינר טעינה */
+.spinner {
+  border: 4px solid var(--light-secondary);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tickets-page {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .tickets-container {
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .tickets-title {
+    font-size: 26px;
+  }
+
+  .tickets-filters {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .tickets-empty {
+    padding: 60px var(--spacing-lg);
+  }
+
+  .add-ticket-btn {
+    width: 100%;
+    min-width: auto;
+  }
+}

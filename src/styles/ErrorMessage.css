@@ -1,0 +1,81 @@
+@import './variables.css';
+
+.error-message {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  background: var(--error-light);
+  color: var(--error);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border-right: 3px solid var(--error);
+  animation: slideDown var(--transition-base);
+}
+
+.error-message.warning {
+  background: #fffbeb;
+  color: var(--warning);
+  border-right-color: var(--warning);
+}
+
+.error-message.success {
+  background: #f0fdf4;
+  color: var(--success);
+  border-right-color: var(--success);
+}
+
+.error-icon {
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.error-content h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.error-content p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.error-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+  padding: 0;
+}
+
+.error-close:hover {
+  opacity: 1;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .error-message {
+    padding: var(--spacing-md);
+  }
+}

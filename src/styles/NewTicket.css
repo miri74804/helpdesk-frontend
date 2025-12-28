@@ -1,0 +1,76 @@
+@import './variables.css';
+
+/* מיכל ראשי */
+.new-ticket-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: var(--spacing-2xl);
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  direction: rtl;
+}
+
+/* כותרת */
+.new-ticket-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 2px solid var(--border);
+}
+
+.new-ticket-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 var(--spacing-md) 0;
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.new-ticket-subtitle {
+  font-size: 15px;
+  color: var(--gray);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* כפתור ביטול */
+.cancel-btn {
+  flex: 1;
+  background: transparent;
+  color: var(--gray);
+  border: 2px solid var(--border);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-slow);
+  font-family: var(--font-primary);
+}
+
+.cancel-btn:hover {
+  background: var(--light);
+  border-color: var(--gray-light);
+  color: var(--dark-secondary);
+  transform: translateY(-2px);
+}
+
+.cancel-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .new-ticket-container {
+    margin: 20px;
+    padding: var(--spacing-xl);
+  }
+  
+  .new-ticket-title {
+    font-size: 26px;
+  }
+}
