@@ -40,3 +40,11 @@ export const addUser = async (userData: NewUserPayload) => {
   const response = await  api.post('/users', userData);
   return response.data;
 };
+
+// מחיקה
+export const deleteStatus = (id: number) => api.delete(`/statuses/${id}`);
+export const deletePriority = (id: number) => api.delete(`/priorities/${id}`);
+
+// הוספה
+export const addStatus = (name: string) => api.post('/statuses', { name });
+export const addPriority = (name: string) => api.post('/priorities', { name });

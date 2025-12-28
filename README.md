@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# 🎫 Helpdesk System — React & TypeScript Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**פותח ע"י מירי כהן**  
+מערכת ניהול פניות (Helpdesk) מלאה המאפשרת ניהול מחזור חיי טיקט: החל מפתיחת הפנייה ע"י לקוח, ניתובה ע"י מנהל (ראש צוות) למזכיר המתאים, וטיפול שוטף בסטטוסים ובתגובות.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 פירוט תפקידים והרשאות (RBAC)
+המערכת מממשת הפרדה מלאה בין סוגי המשתמשים כפי שהוגדר בדרישות הפרויקט:
 
-## React Compiler
+### 👤 Customer (לקוח)
+- **צפייה:** רואה רק טיקטים שהוא יצר (`GET`).
+- **יצירה:** יכול לפתוח טיקט חדש במערכת (`POST`).
+- **אינטראקציה:** יכול להוסיף תגובות בתוך הטיקטים שלו (`PUT`).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🛠️ Agent (מזכיר/סוכן)
+- **צפייה:** רואה רק טיקטים שהוקצו אליו ע"י המנהל (`GET`).
+- **עדכון:** יכול לעדכן את סטטוס הטיקט בזמן הטיפול (`PUT`).
+- **אינטראקציה:** יכול להוסיף תגובות לטיקטים שבטיפולו (`PUT`).
 
-## Expanding the ESLint configuration
+### 👑 Admin (מנהל/ראש צוות)
+- **צפייה:** רואה את כל הטיקטים הקיימים במערכת (`GET`).
+- **ניהול:** יכול לשנות סטטוסים לכל טיקט (`PUT`).
+- **ניתוב:** יכול להקצות (Assign) טיקטים לסוכנים/מזכירים (`POST-Agent`).
+- **הגדרות:** יכול להוסיף סטטוסים חדשים ורמות דחיפות חדשות למערכת.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛣️ ניתובים חובה (Routes)
+האפליקציה כוללת מערכת **Route Guard** המגנה על נתיבים ומוודאת שמשתמשים לא מחוברים יופנו לדף ההתחברות:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- `/login` – טופס התחברות (JWT).
+- `/dashboard` – מסך פתיחה דינמי המותאם אישית לפי תפקיד המשתמש (Role).
+- `/tickets` – רשימת הטיקטים המורשים לצפייה.
+- `/tickets/:id` – תצוגת פרטי טיקט מלאה הכוללת היסטוריית תגובות.
+- `/tickets/new` – פתיחת טיקט חדש (**ללקוחות בלבד**).
+- `/*` – דף שגיאה 404 בעיצוב נקי ומקצועי.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏗️ מבנה הפרויקט (Project Structure)
+הפרויקט מאורגן בצורה מודולרית תוך שמירה על ניקיון וסדר.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 📂 תיקיות מרכזיות
+- `src/components/admin` – ניהול משתמשים (`AddUserModal`, `UserManagement`) והגדרות מערכת (`StatusManagement`).
+- `src/components/dashboard` – דשבורדים מותאמים וכרטיסי סטטיסטיקה (`StatCard`).
+- `src/components/tickets` – יצירה וניהול רשימות טיקטים.
+- `src/context` – ניהול מצב גלובלי (`AuthContext`, `TicketsContext`).
+- `src/services` – תקשורת מול ה-API (`api.tsx`).
+- `src/styles` – עיצוב CSS מודולרי לכל רכיב (`Status.css`, `AdminSidebar.css` וכו').
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🧹 ניקוי קבצים (Cleanup)
+הקבצים הבאים הוסרו מהגרסה הסופית עקב כפילות או חוסר שימוש בשרת:
+- `axiosInstance.ts` (אוחד לתוך `api.tsx`).
+- `UserTable.tsx` (הוטמע בתוך `UserManagement.tsx`).
+- פונקציות מחיקה (`DELETE`) הוסרו מה-UI מאחר והשרת תומך ב-GET/POST בלבד עבור הגדרות מערכת.
+
+---
+
+## 🧠 ניהול מצב גלובלי (Global State)
+הפרויקט עושה שימוש ב-**Context API** לניהול המידע המרכזי באפליקציה:
+- **Auth Management:** ניהול ה-Token, פרטי המשתמש המחובר ותהליך ה-Logout.
+- **Ticket Management:** טעינה, שמירה וניהול של רשימת הטיקטים ב-State גלובלי לביצועים אופטימליים.
+
+---
+
+## 🛠️ טכנולוגיות וכלים
+- **React 18** & **Vite** (סביבת פיתוח מהירה).
+- **TypeScript** (Type-Safety מלא על פני כל הפרויקט).
+- **Axios** (עם Interceptors להזרקת JWT Token לכל בקשה).
+- **React Router 6** (ניהול ניתובים והגנות צד-לקוח).
+- **CSS3 Variables** (מערכת עיצוב אחידה ומקצועית).
+
+---
+
+## ⚙️ הוראות הרצה
+1. **שכפול הפרויקט:**
+   ```bash
+   git clone [URL-OF-REPOSITORY]
+התקנת תלויות:
+
+bash
+Copy code
+npm install
+חיבור לשרת:
+יש לוודא שהשרת (API) רץ בכתובת http://localhost:4000.
+ה-BaseURL מוגדר בקובץ src/services/api.tsx.
+
+הרצת האפליקציה:
+
+bash
+Copy code
+npm run dev
+✨ דגשי חוויית משתמש (UX)
+מראה מקצועי: עיצוב נקי ונעים המותאם למערכות Helpdesk ארגוניות.
+
+מצבי טעינה (Loading): מוצג רכיב טעינה בכל המתנה לנתונים מהשרת.
+
+טיפול בשגיאות: הצגת הודעות ברורות במקרה של שגיאת הרשאות (401) או בעיה ב-API.
+
+Empty State: הצגת הודעה מתאימה כאשר אין נתונים להצגה ברשימות.
+
+מוגש כחלק מפרויקט סיום קורס React. 🚀
