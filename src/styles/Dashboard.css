@@ -213,6 +213,82 @@
   box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
 }
 
+
+/* פעולות מהירות */
+.admin-quick-actions {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  margin-top: var(--spacing-2xl);
+}
+
+.admin-quick-actions h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 var(--spacing-lg) 0;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--border);
+}
+
+.action-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.action-cards > p {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray);
+  margin: 0;
+  padding: var(--spacing-md);
+  background: var(--light);
+  border-radius: var(--radius-md);
+  border-right: 4px solid var(--warning);
+}
+
+/* סגנון מיוחד לרשימת טיקטים בדשבורד */
+.admin-quick-actions .tickets-list-compact {
+  margin-top: var(--spacing-md);
+}
+
+/* אוברייד לכרטיסי טיקט בדשבורד */
+.admin-quick-actions .ticket-card {
+  transition: all var(--transition-base);
+  border-right: 3px solid transparent;
+}
+
+.admin-quick-actions .ticket-card:hover {
+  transform: translateX(-4px);
+  box-shadow: var(--shadow-lg);
+  border-right-color: var(--warning);
+}
+
+/* Layout עיקרי של האדמין */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--light);
+}
+
+.admin-main-content {
+  flex: 1;
+  padding: var(--spacing-2xl);
+  overflow-y: auto;
+}
+
+.admin-overview {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  margin-bottom: var(--spacing-2xl);
+  text-align: center;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard-page {
