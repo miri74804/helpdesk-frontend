@@ -1,0 +1,322 @@
+@import './variables.css';
+
+/* ========== עמוד ניהול משתמשים ========== */
+.user-management-page {
+  min-height: 100vh;
+  background: var(--light);
+  padding: var(--spacing-2xl) 0;
+  direction: rtl;
+}
+
+.user-management-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+/* כותרת + כפתור */
+.user-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.user-management-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0;
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.add-user-btn {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  color: white;
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-slow);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+  font-family: var(--font-primary);
+  white-space: nowrap;
+}
+
+.add-user-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+}
+
+/* ========== טבלת משתמשים ========== */
+.users-table-container {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.users-table thead {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.users-table thead tr {
+  border-bottom: 2px solid var(--border);
+}
+
+.users-table th {
+  padding: var(--spacing-lg);
+  text-align: right;
+  font-weight: 700;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.users-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: all var(--transition-base);
+}
+
+.users-table tbody tr:hover {
+  background: var(--light);
+}
+
+.users-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.users-table td {
+  padding: var(--spacing-lg);
+  color: var(--dark-secondary);
+}
+
+/* תפקידים */
+.users-table td:nth-child(3) {
+  font-weight: 600;
+}
+
+.users-table td:nth-child(3)::before {
+  content: '👤 ';
+  opacity: 0.7;
+}
+
+/* אין משתמשים */
+.no-data {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--gray);
+  font-size: 16px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========== מודאל ========== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: var(--spacing-xl);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 var(--spacing-xl) 0;
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-family: var(--font-primary);
+  color: var(--dark);
+  background: white;
+  transition: all var(--transition-base);
+  box-sizing: border-box;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.modal-content input::placeholder {
+  color: var(--gray-light);
+}
+
+.modal-content select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2364748b' d='M6 8L0 2l1.4-1.4L6 5.2 10.6.6 12 2z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left var(--spacing-lg) center;
+  padding-left: 40px;
+}
+
+/* הודעת שגיאה בטופס */
+.error-text {
+  color: var(--error);
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-top: calc(var(--spacing-sm) * -1);
+}
+
+.error-text::before {
+  content: '⚠️';
+  font-size: 14px;
+}
+
+/* כפתורי המודאל */
+.modal-content .buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.modal-content .buttons button {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-slow);
+  font-family: var(--font-primary);
+  border: none;
+}
+
+.modal-content .buttons button[type="submit"] {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.modal-content .buttons button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+}
+
+.modal-content .buttons button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.modal-content .buttons .cancel-btn {
+  background: transparent;
+  color: var(--gray);
+  border: 2px solid var(--border);
+}
+
+.modal-content .buttons .cancel-btn:hover {
+  background: var(--light);
+  border-color: var(--gray-light);
+  color: var(--dark);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .user-management-header {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: stretch;
+  }
+
+  .add-user-btn {
+    width: 100%;
+  }
+
+  .users-table-container {
+    overflow-x: auto;
+  }
+
+  .users-table {
+    min-width: 600px;
+  }
+
+  .modal-content {
+    padding: var(--spacing-xl);
+  }
+
+  .modal-content .buttons {
+    flex-direction: column-reverse;
+  }
+}

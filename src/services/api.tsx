@@ -1,3 +1,4 @@
+import type {  NewUserPayload } from "../types";
 import api from "./axiosInstance"
 
 export const getTickets = async () => {
@@ -34,3 +35,8 @@ export const getUsers = async () => {
     const response = await api.get('/users');
     return response.data;
 }
+
+export const addUser = async (userData: NewUserPayload) => {
+  const response = await  api.post('/users', userData);
+  return response.data;
+};

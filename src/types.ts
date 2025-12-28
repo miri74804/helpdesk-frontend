@@ -94,3 +94,10 @@ export interface TicketFormValues {
     description: string
     priority_id: number;
 }
+
+export interface NewUserPayload {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+}

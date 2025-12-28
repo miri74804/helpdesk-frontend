@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import type { User } from "../../types";
 import { getUsers } from "../../services/api";
 import Loading from "../common/Loading";
+import UserTable from "./UserTable";
+import AddUserModal from "./AddUserModal";
+import "../../styles/UserManagement.css";
+import Swal from "sweetalert2";
 
 const UserManagement = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const fetchData = async () => {
         setLoading(true);
@@ -19,43 +24,47 @@ const UserManagement = () => {
         }
     };
 
-    useEffect(() => { 
-        fetchData(); 
+    const handleSuccess = () => {
+        fetchData();
+        setIsModalOpen(false);
+        
+        Swal.fire({
+            icon: "success",
+            title: "המשתמש נוסף בהצלחה!",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    };
+
+    useEffect(() => {
+        fetchData();
     }, []);
 
     return (
         <div className="user-management-page">
-            <header className="admin-header">
-                <h2>ניהול משתמשים</h2>
-                <button className="add-btn">+ הוסף משתמש</button>
-            </header>
+            <div className="user-management-container">
+                <div className="user-management-header">
+                    <h2 className="user-management-title">ניהול משתמשים</h2>
+                    <button className="add-user-btn" onClick={() => setIsModalOpen(true)}>
+                        + הוסף משתמש
+                    </button>
+                </div>
 
-            {loading ? (
-                <Loading />
-            ) : users.length === 0 ? (
-                <p className="no-data">לא נמצאו משתמשים במערכת</p>
-            ) : (
-                <table className="users-table">
-                    <thead>
-                        <tr>
-                            <th>שם</th>
-                            <th>אימייל</th>
-                            <th>תפקיד</th>
-                            <th>נוצר ב</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user) => (
-                            <tr key={user.id}>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.role}</td>
-                                <td>{new Date(user.created_at).toLocaleDateString('he-IL')}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
+                {loading ? (
+                    <Loading />
+                ) : (
+                    <div className="users-table-container">
+                        <UserTable users={users} />
+                    </div>
+                )}
+
+                {isModalOpen && (
+                    <AddUserModal
+                        onClose={() => setIsModalOpen(false)}
+                        onSuccess={handleSuccess}
+                    />
+                )}
+            </div>
         </div>
     );
 }
