@@ -101,3 +101,10 @@ npm run dev
 Empty State: הצגת הודעה מתאימה כאשר אין נתונים להצגה ברשימות.
 
 מוגש כחלק מפרויקט סיום קורס React. 🚀
+
+<img width="1897" height="929" alt="צילום מסך 2026-03-17 173644" src="https://github.com/user-attachments/assets/9aa42ec6-ed1a-4ba6-a087-a01729c601fc" />
+<img width="1869" height="926" alt="צילום מסך 2026-03-17 173930" src="https://github.com/user-attachments/assets/3990df18-f607-4668-9618-e6e8f5a011a7" />
+<img width="1873" height="817" alt="צילום מסך 2026-03-17 173819" src="https://github.com/user-attachments/assets/eba7849c-3db9-44f1-b143-b6a91b7a0a74" />
+<img width="1878" height="909" alt="צילום מסך 2026-03-17 173736" src="https://github.com/user-attachments/assets/d17985ba-f292-4a46-855b-298ecad09340" />
+<img width="1886" height="927" alt="צילום מסך 2026-03-17 173712" src="https://github.com/user-attachments/assets/39f405c6-de6d-4b4d-b838-8157ec45d3ac" />
+
