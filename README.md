@@ -104,7 +104,8 @@ Empty State: הצגת הודעה מתאימה כאשר אין נתונים לה�
 
 
 
-<img width="1869" height="926" alt="צילום מסך 2026-03-17 173930" src="https://github.com/user-attachments/assets/1a668349-2286-4f46-9713-8831f397971f" />
-<img width="1873" height="817" alt="צילום מסך 2026-03-17 173819" src="https://github.com/user-attachments/assets/3c2d5aea-8c50-45aa-ad56-5b61a8f72bfc" />
-<img width="1878" height="909" alt="צילום מסך 2026-03-17 173736" src="https://github.com/user-attachments/assets/782e9158-eb77-4f2d-b533-dcffcf9072f0" />
-<img width="1886" height="927" alt="צילום מסך 2026-03-17 173712" src="https://github.com/user-attachments/assets/6ec64632-9ea7-4dca-ab03-d65e6e9a074b" />
+<img width="1869" height="926" alt="צילום מסך 2026-03-17 173930" src="https://github.com/user-attachments/assets/6f26cc15-2b32-487f-979e-21703dd24d45" />
+<img width="1873" height="817" alt="צילום מסך 2026-03-17 173819" src="https://github.com/user-attachments/assets/b5743b81-d9ae-4672-af13-b3c2e310e728" />
+<img width="1878" height="909" alt="צילום מסך 2026-03-17 173736" src="https://github.com/user-attachments/assets/07a02cfb-c485-4f2f-95fd-28fe492253a7" />
+<img width="1866" height="902" alt="צילום מסך 2026-03-17 180258" src="https://github.com/user-attachments/assets/698fcb3a-7d52-4dd3-9eeb-7b9aa5d1e7aa" />
+
